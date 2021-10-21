@@ -23,3 +23,52 @@ export const createList = async (req, res) => {
 		});
 	}
 };
+
+export const getProductById = async (req, res) => {
+	try {
+		const list = await todoList.findAll({
+			where: {
+				id: req.params.id,
+			},
+		});
+		res.json(list[0]);
+	} catch (error) {
+		res.json({
+			error: error.message,
+		});
+	}
+};
+
+export const updateList = async (req, res) => {
+	try {
+		await todoList.update(req.body, {
+			where: {
+				id: req.params.id,
+			},
+		});
+		res.json({
+			message: "data has been sucsessfully updated",
+		});
+	} catch (error) {
+		res.json({
+			error: error.message,
+		});
+	}
+};
+
+export const deleteList = async (req, res) => {
+	try {
+		await todoList.destroy({
+			where: {
+				id: req.params.id,
+			},
+		});
+		res.json({
+			message: "Data Has been sucsessfully deleted",
+		});
+	} catch (error) {
+		res.json({
+			error: error.message,
+		});
+	}
+};

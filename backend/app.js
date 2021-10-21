@@ -1,6 +1,7 @@
 import express from "express";
 import router from "./routes/router.js";
 import db from "./config/db.js";
+import cors from "cors";
 
 // express gateaway
 const app = express();
@@ -18,6 +19,7 @@ try {
 
 // middleware
 app.use(express.json());
+app.use(cors());
 
 // load route
 app.use(router);
